@@ -22,8 +22,8 @@ function AddProduct() {
     const [quantity, setQuantity] = useState(0)
     const [created_at, setCreated_at] = useState("")
     const [productsList, setProductsList] = useState([])
-    // const navigate = useNavigate();
-
+    
+    //Function สำหรับการเพิ่มสินค้า
     const addProducts = () => {
         Axios.post('http://localhost:3001/create', {
             productname: productname,
@@ -43,7 +43,7 @@ function AddProduct() {
             ])
         })
     }
-
+    //Function สำหรับการดึงข้อมูลสินค้า
     const getProducts = () => {
         Axios.get('http://localhost:3001/').then((response) => {
             setProductsList(response.data)
@@ -51,6 +51,7 @@ function AddProduct() {
     }
 
     return (
+        //Form การเพิ่มข้อมูลสินค้า และ การดึงข้อมูลสินค้า
         <Flex p={4} maxWidth="400px" mx="auto" alignItems="center" justifyContent="center" fontFamily={"KanitRegular"}>
             <Flex
                 flexDirection="column"
@@ -61,6 +62,7 @@ function AddProduct() {
             >
 
                 <Box >
+                    
                     <Heading mb={4}>Add Product</Heading>
                     <form >
                         <FormControl >
@@ -102,6 +104,7 @@ function AddProduct() {
                 </Box>
                 <Box>
                     <br />
+                    
                     <Heading my={4}> All Products</Heading>
                     <Button mt={4} type="submit" onClick={getProducts} bg="#f9a825" _hover={{ borderColor: "#f9a825", color: "#f9a825", bg: "white" }}
                         color='#white'>

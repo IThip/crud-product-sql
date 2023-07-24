@@ -1,4 +1,4 @@
-// src/components/Login.js
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import { FormControl, FormLabel, Input, Button, Box, Heading } from '@chakra-ui/react';
@@ -19,11 +19,11 @@ import ImgProduct from '../image/products.png'
 const Login = () => {
   const { toggleColorMode } = useColorMode();
   const formBackground = useColorModeValue('gray.100', 'gray.700');
-
+  
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-
+   //Function การ Login
   const handleLogin = (event) => {
     event.preventDefault()
     axios.post('http://localhost:3001/login', {username,password})
@@ -32,7 +32,7 @@ const Login = () => {
   }
 
   return (
-
+//Form สำหรับหน้า Login
   <Flex h="100vh" alignItems="center" justifyContent="center" fontFamily={"KanitRegular"}>
     <Image src={ImgProduct}/>
   <Flex

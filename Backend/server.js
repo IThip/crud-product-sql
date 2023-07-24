@@ -1,49 +1,3 @@
-// const express = require("express")
-// const mysql = require('mysql')
-// const cors = require('cors')
-
-// const app = express()
-// app.use(cors())
-
-// const db = mysql.createConnection({
-//     host: "localhost",
-//     user: "root",
-//     password: "",
-//     database: "my_store_db"
-// })
-
-// app.get('/products', (req,res) => {
-//     db.query("SELECT * FROM products", (err, result) => {
-//         if(err){
-//             console.log(err)
-//         } else {
-//              res.send(result)
-//         }
-
-//     })
-// })
-
-// app.post('/create', (req, res) => {
-//     const productname = req.body.productname
-//     const code = req.body.code
-//     const quantity = req.body.quantity
-//     const created_at = req.body.created_at
-
-//     db.query("INSERT INTO products (productname, code, quantity, created_at) VALUES(?,?,?,?)",
-//         [productname, code, quantity, created_at],
-//         (err, result) => {
-//             if (err) {
-//                 console.log(err)
-//             } else {
-//                 res.send("Value inserted")
-//             }
-//         })
-
-// })
-// app.listen(3001,() => {
-//     console.log("listening")
-// })
-
 const express = require("express");
 
 const cors = require("cors");
@@ -53,12 +7,14 @@ const mysql = require("mysql");
 
 const app = express(); app.use(express.json());
 app.use(cors());
+//Set ค่าเริ่มต้นของการเชื่อมต่อระหว่าง Frontend กับ Database
 const db = mysql.createConnection({ 
     host: "localhost", 
     user: "root", 
     password: "", 
     database: "my_store_db" })
 
+// API สำหรับการดึงข้อมูลสินค้า
 app.get("/", (req, res) => { 
     const sql = "SELECT * FROM products"; 
     db.query(sql, (err, data) => { 
@@ -68,10 +24,11 @@ app.get("/", (req, res) => {
     }); 
 });
 
+// API สำหรับหน้า Login
 app.post('/login', (req,res) =>{
     const sql = "SELECT * FROM users WHERE username = ? AND password = ?";
 
-
+    //ทำการ query username password ใน database
     db.query(sql, [req.body.username,
         req.body.password], (err, data) => { 
         if (err) return res.json("Error"); 
@@ -82,6 +39,8 @@ app.post('/login', (req,res) =>{
         }
     }) 
 })
+
+// API สำหรับการเพิ่มข้อมูลสินค้า
 app.post('/create', (req, res) => { 
     const sql = "INSERT INTO products (productname, code, quantity, created_at) VALUES (?)"; 
     const values = [
@@ -90,7 +49,7 @@ app.post('/create', (req, res) => {
         req.body.quantity,
         req.body.created_at
     ]  
-
+    //ทำการ query values คือ ชื่อสินค้า รหัสสินค้า จำนวนสินค้า วันที่สร้างสินค้า ใน database
     db.query(sql, [values], (err, data) => { 
         if (err) 
         return res.json("Error"); 
@@ -98,7 +57,7 @@ app.post('/create', (req, res) => {
     }) 
 })
 
-
+//Set Port สำหรับการดึง API
 app.listen(3001, () => { 
     console.log("listening"); 
 })
