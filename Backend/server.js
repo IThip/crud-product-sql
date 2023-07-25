@@ -12,7 +12,8 @@ const db = mysql.createConnection({
     host: "localhost", 
     user: "root", 
     password: "", 
-    database: "my_store_db" })
+    database: "my_store_db" 
+})
 
 // API สำหรับการดึงข้อมูลสินค้า
 app.get("/", (req, res) => { 

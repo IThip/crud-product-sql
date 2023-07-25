@@ -1,4 +1,4 @@
-//  import React from 'react'
+import React, { useState } from 'react'
 import {
     FormControl,
     FormLabel,
@@ -9,12 +9,7 @@ import {
     Button,
     Flex
 } from '@chakra-ui/react'
-
 import Axios from 'axios';
-import React, { useState } from 'react'
-
-
-
 
 function AddProduct() {
     const [productname, setProductname] = useState(" ")
@@ -52,14 +47,17 @@ function AddProduct() {
 
     return (
         //Form การเพิ่มข้อมูลสินค้า และ การดึงข้อมูลสินค้า
-        <Flex p={4} maxWidth="400px" mx="auto" alignItems="center" justifyContent="center" fontFamily={"KanitRegular"}>
+        <Flex p={[6,4]} pt={["6rem","null"]} 
+        maxWidth={["200px","400px"]} 
+        mx="auto" 
+        alignItems="center" 
+        justifyContent="center" 
+        fontFamily={"KanitRegular"}>
             <Flex
                 flexDirection="column"
-
                 p={12}
                 borderRadius={8}
-                boxShadow="lg"
-            >
+                boxShadow="lg">
 
                 <Box >
                     
